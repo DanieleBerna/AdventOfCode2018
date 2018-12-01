@@ -1,10 +1,12 @@
+import itertools
+
 def CalibrateFrequency (frequency, driftList):
     for f in driftList:
         frequency += int(f)
     return frequency
 
 def FindFirstTwiceFrequency (frequency, driftList):
-    frequenciesAlreadyFound=[]
+    frequenciesAlreadyFound=set([]) #Changed from list to set
     twiceFound = False
     twiceFrequency=0
 
@@ -16,11 +18,11 @@ def FindFirstTwiceFrequency (frequency, driftList):
                 twiceFound=True
                 break
             else:
-                frequenciesAlreadyFound = frequenciesAlreadyFound+[frequency]
+                frequenciesAlreadyFound.add(frequency) #Changed from "append item to a list" to "add item to a set"
     return twiceFrequency
 
-inputStringList = open('input_d01.txt').readlines()
-inputList = [int(i) for i in inputStringList]
+inputStringList = open('D:/input_d01.txt').readlines()
+inputList = ([int(i) for i in inputStringList])
 
 print "Frequency: " + str(CalibrateFrequency(0, inputList))
-print "First Twice: " + str(FindFirstTwiceFrequency(0, parsedFrequency))
+print "First Twice: " + str(FindFirstTwiceFrequency(0, inputList))
